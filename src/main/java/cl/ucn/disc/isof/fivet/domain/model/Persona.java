@@ -28,7 +28,7 @@ public class Persona extends BaseModel {
     @Getter
     @NotEmpty
     @Column(nullable = false)
-    String rut;
+    private String rut;
 
     /**
      * Nombre completo
@@ -37,7 +37,7 @@ public class Persona extends BaseModel {
     @Setter
     @NotEmpty(message = "El nombre no puede estar vacio")
     @Column(nullable = false)
-    String nombre;
+    private String nombre;
 
     /**
      * Password
@@ -46,14 +46,14 @@ public class Persona extends BaseModel {
     @Getter
     @Encrypted
     @Column(nullable = false)
-    String password;
+    private String password;
 
     /**
      * Tipo de la persona
      */
     @Getter
     @NotNull
-    Tipo tipo;
+    private Tipo tipo;
 
     /**
      * Tipo de rol
