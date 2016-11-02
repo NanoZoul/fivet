@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Fivet.iml" filepath="$PROJECT_DIR$/.idea/modules/Fivet.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Fivet_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Fivet_main.iml" group="Fivet" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Fivet_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Fivet_test.iml" group="Fivet" />
+    </modules>
+  </component>
+</project>
