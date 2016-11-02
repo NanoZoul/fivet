@@ -68,11 +68,14 @@ public class TestEbeanBackendService {
     @Test
     public void testPersona() {
 
+        final String rut = "1-1";
+        final String nombre = "Este es mi nombre";
+
         // Insert into backend
         {
             final Persona persona = Persona.builder()
-                    .nombre("Diego Astorga Urrutia")
-                    .rut("13014491-8")
+                    .nombre(nombre)
+                    .rut(rut)
                     .password("durrutia123")
                     .tipo(Persona.Tipo.CLIENTE)
                     .build();
@@ -83,24 +86,25 @@ public class TestEbeanBackendService {
             Assert.assertNotNull("Objeto sin id", persona.getId());
         }
 
-        // Get from backend
+        // Get from backend v1
         {
-            final Persona persona = backendService.getPersona("13014491-8");
+            final Persona persona = backendService.getPersona(rut);
             log.debug("Persona founded: {}", persona);
             Assert.assertNotNull("Can't find Persona", persona);
             Assert.assertNotNull("Objeto sin id", persona.getId());
+            Assert.assertEquals("Nombre distintos!", rut, persona.getNombre());
 
-            persona.setNombre("Diego Urrutia Astorga");
+            // Update nombre
+            persona.setNombre(nombre + nombre);
             persona.update();
         }
 
-        // Get from backend
+        // Get from backend v2
         {
-            final Persona persona = backendService.getPersona("13014491-8");
+            final Persona persona = backendService.getPersona(rut);
             log.debug("Persona founded: {}", persona);
             Assert.assertNotNull("Can't find Persona", persona);
-            Assert.assertNotNull("Objeto sin id", persona.getId());
-
+            Assert.assertEquals("Nombres distintos!", nombre, persona.getNombre());
         }
 
     }
