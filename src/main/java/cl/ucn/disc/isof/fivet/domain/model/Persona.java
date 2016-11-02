@@ -1,15 +1,14 @@
 package cl.ucn.disc.isof.fivet.domain.model;
 
-import com.durrutia.ebean.BaseModel;
 import com.avaje.ebean.annotation.Encrypted;
 import com.avaje.ebean.annotation.EnumValue;
+import com.durrutia.ebean.BaseModel;
 import lombok.*;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /**
  * @author Diego Urrutia Astorga
@@ -54,6 +53,14 @@ public class Persona extends BaseModel {
     @Getter
     @NotNull
     private Tipo tipo;
+
+    /**
+     * Listado de pacientes
+     */
+    @Getter
+    @ManyToMany
+    @OrderBy("numero")
+    private List<Paciente> pacientes;
 
     /**
      * Tipo de rol
