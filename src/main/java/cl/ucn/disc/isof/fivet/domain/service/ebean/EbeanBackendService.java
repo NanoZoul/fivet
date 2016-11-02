@@ -1,5 +1,6 @@
 package cl.ucn.disc.isof.fivet.domain.service.ebean;
 
+import cl.ucn.disc.isof.fivet.domain.model.Paciente;
 import cl.ucn.disc.isof.fivet.domain.model.Persona;
 import cl.ucn.disc.isof.fivet.domain.service.BackendService;
 import com.avaje.ebean.EbeanServer;
@@ -38,8 +39,12 @@ public class EbeanBackendService implements BackendService {
 
         // config.addPackage("package.de.la.clase.a.agregar.en.el.modelo");
         config.addClass(BaseModel.class);
+
         config.addClass(Persona.class);
         config.addClass(Persona.Tipo.class);
+
+        config.addClass(Paciente.class);
+        config.addClass(Paciente.Sexo.class);
 
         // http://ebean-orm.github.io/docs/query/autotune
         config.getAutoTuneConfig().setProfiling(false);
