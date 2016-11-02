@@ -10,6 +10,8 @@ import javax.persistence.Table;
 import java.util.Date;
 
 /**
+ * Clase que representa a un Paciente de la veterinaria.
+ *
  * @author Diego P. Urrutia Astorga
  * @version 20161102
  */
