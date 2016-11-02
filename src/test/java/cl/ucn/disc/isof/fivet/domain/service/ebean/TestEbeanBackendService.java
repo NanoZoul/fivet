@@ -93,6 +93,8 @@ public class TestEbeanBackendService {
             Assert.assertNotNull("Can't find Persona", persona);
             Assert.assertNotNull("Objeto sin id", persona.getId());
             Assert.assertEquals("Nombre distintos!", rut, persona.getNombre());
+            Assert.assertNotNull("Pacientes null", persona.getPacientes());
+            Assert.assertTrue("Pacientes != 0", persona.getPacientes().size() == 0);
 
             // Update nombre
             persona.setNombre(nombre + nombre);
