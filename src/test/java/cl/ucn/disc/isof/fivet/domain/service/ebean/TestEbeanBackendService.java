@@ -1,5 +1,7 @@
 package cl.ucn.disc.isof.fivet.domain.service.ebean;
 
+import cl.ucn.disc.isof.fivet.domain.model.Control;
+import cl.ucn.disc.isof.fivet.domain.model.Paciente;
 import cl.ucn.disc.isof.fivet.domain.model.Persona;
 import cl.ucn.disc.isof.fivet.domain.service.BackendService;
 import com.google.common.base.Stopwatch;
@@ -7,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.*;
 import org.junit.rules.Timeout;
 import org.junit.runners.MethodSorters;
+
+import java.util.List;
 
 /**
  * Clase de testing del {@link BackendService}.
@@ -92,7 +96,7 @@ public class TestEbeanBackendService {
             log.debug("Persona founded: {}", persona);
             Assert.assertNotNull("Can't find Persona", persona);
             Assert.assertNotNull("Objeto sin id", persona.getId());
-            Assert.assertEquals("Nombre distintos!", rut, persona.getNombre());
+            Assert.assertEquals("Nombre distintos!", nombre, persona.getNombre());
             Assert.assertNotNull("Pacientes null", persona.getPacientes());
             Assert.assertTrue("Pacientes != 0", persona.getPacientes().size() == 0);
 
@@ -106,10 +110,66 @@ public class TestEbeanBackendService {
             final Persona persona = backendService.getPersona(rut);
             log.debug("Persona founded: {}", persona);
             Assert.assertNotNull("Can't find Persona", persona);
-            Assert.assertEquals("Nombres distintos!", nombre, persona.getNombre());
+            Assert.assertEquals("Nombres distintos!", nombre+nombre, persona.getNombre());
         }
+    }
+
+    /**
+     * Testing del metodo getPaciente
+     */
+    @Test
+    public void testGetPaciente(){
+        //Crear pacientes
+        final Paciente paciente1 = Paciente.builder()
+                .numero(987654321)
+                .nombre("Rinho")
+                .build();
+        paciente1.insert();
+
+        //Paciente del backend
+        Paciente pacienteBackend1 = backendService.getPaciente(paciente1.getNumero());
+
+        Assert.assertNotNull("El paciente es null",pacienteBackend1);
+        Assert.assertEquals(paciente1.getNumero(),pacienteBackend1.getNumero());
+        Assert.assertEquals(paciente1.getNombre(),pacienteBackend1.getNombre());
+    }
+
+    /**
+     * Test del metodo getPaciente por nombre
+     */
+    @Test
+    public void testGetPacientesPorNombre(){
+        Persona persona1 = Persona.builder()
+                .nombre("Alfredo")
+                .mail("ahenriquez@sodired.cl")
+                .rut("17725104-6")
+                .password("123456")
+                .build();
+        persona1.insert();
+
+        Paciente paciente1 = Paciente.builder()
+                .color("blanco")
+                .nombre("Rinho")
+                .numero(123456789)
+                .raza("Pastor Alemán")
+                .sexo(Paciente.Sexo.MACHO)
+                .build();
+        paciente1.insert();
+
+        Paciente paciente2 = Paciente.builder()
+                .color("negro")
+                .nombre("Wolf")
+                .numero(987654321)
+                .raza("Gran Danés")
+                .sexo(Paciente.Sexo.MACHO)
+                .build();
+        paciente2.insert();
+
+        //...
 
     }
+
+
 
 
 }

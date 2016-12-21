@@ -4,10 +4,9 @@ import com.avaje.ebean.annotation.EnumValue;
 import com.durrutia.ebean.BaseModel;
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Clase que representa a un Paciente de la veterinaria.
@@ -77,6 +76,25 @@ public class Paciente extends BaseModel {
 
         @EnumValue("Indeterminado")
         INDETERMINADO,
+    }
+
+    /**
+     * listado de controles
+     */
+    @Getter
+    @ManyToMany
+    @OrderBy("fecha")
+    private List<Control> Controles;
+
+    /**
+     * Agrega el controles en paciente.
+     *
+     * @param control
+     */
+    public void add(final Control control) {
+
+        this.Controles.add(control);
+
     }
 
 }

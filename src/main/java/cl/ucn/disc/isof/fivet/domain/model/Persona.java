@@ -73,5 +73,14 @@ public class Persona extends BaseModel {
         VETERINARIO,
     }
 
+    /**
+     * Mail
+     */
+    @Getter
+    @Setter
+    @Column
+    @NotEmpty
+    private String mail;
+
 
 }
